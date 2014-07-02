@@ -18,7 +18,7 @@ package grails.plugin.scopedproxy.reload.filters
 import grails.plugin.scopedproxy.reload.ScopedBeanReloadListener
 import org.slf4j.LoggerFactory
 import org.codehaus.groovy.grails.plugins.web.filters.FiltersConfigArtefactHandler
-import grails.util.Holders
+import org.codehaus.groovy.grails.plugins.PluginManagerHolder
 import org.codehaus.groovy.grails.plugins.web.filters.FilterConfig
 
 class ReloadedScopedBeanFiltersReloader implements ScopedBeanReloadListener {
@@ -79,13 +79,13 @@ class ReloadedScopedBeanFiltersReloader implements ScopedBeanReloadListener {
 	}
 
 	protected getFiltersPlugin() {
-		Holders.pluginManager.getGrailsPlugin('filters')
+		PluginManagerHolder.pluginManager.getGrailsPlugin('filters')
 	}
 	
 	protected triggerFiltersReload(Class triggeringFiltersClass) {
 		GroovySystem.metaClassRegistry.removeMetaClass(FilterConfig)
 		filtersPlugin.doWithDynamicMethods(grailsApplication.mainContext)
-		Holders.pluginManager.informOfClassChange(triggeringFiltersClass)
+		PluginManagerHolder.pluginManager.informOfClassChange(triggeringFiltersClass)
 	}
 	
 	private static final log = LoggerFactory.getLogger(ReloadedScopedBeanFiltersReloader)

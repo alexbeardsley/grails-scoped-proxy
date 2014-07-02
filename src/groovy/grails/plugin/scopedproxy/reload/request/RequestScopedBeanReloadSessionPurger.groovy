@@ -18,6 +18,7 @@ package grails.plugin.scopedproxy.reload.request
 import grails.plugin.scopedproxy.reload.ScopedBeanReloadListener
 import org.slf4j.LoggerFactory
 import org.codehaus.groovy.grails.plugins.web.filters.FiltersConfigArtefactHandler
+import org.codehaus.groovy.grails.plugins.PluginManagerHolder
 import org.codehaus.groovy.grails.plugins.web.filters.FilterConfig
 import grails.plugin.scopedproxy.ScopedProxyUtils as SPU
 
